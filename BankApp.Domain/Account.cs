@@ -15,6 +15,14 @@ namespace BankApp.Domain
             this.Balance = balance;
         }
 
+        public void Deposit(decimal depositAmount)
+        {
+            //guard --- för varje guard skriver jag en egen testmetod
+            //för att se att "grindvakterna" funkar
+            if (depositAmount < 0) throw new ArgumentOutOfRangeException(nameof(depositAmount),
+                "Deposit must be positive");
 
+            Balance = Balance + depositAmount;
+        }
     }
 }
