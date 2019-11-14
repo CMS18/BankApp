@@ -14,16 +14,8 @@ namespace BankApp.Domain
                 Name = "Ellen",
                 Accounts = new List<Account>
                 {
-                    new Account
-                    {
-                        AccountId = 1001,
-                        Balance = 1000
-                    },
-                    new Account
-                    {
-                        AccountId = 1002,
-                        Balance = 2000
-                    }
+                    new Account(1001, 1000),
+                    new Account(1002, 2000)
                 }
 
             },
@@ -33,16 +25,8 @@ namespace BankApp.Domain
                 Name = "Ida",
                 Accounts = new List<Account>
                 {
-                    new Account
-                    {
-                        AccountId = 1003,
-                        Balance = 3000
-                    },
-                    new Account
-                    {
-                        AccountId = 1004,
-                        Balance = 4000
-                    }
+                    new Account(1003, 3000),
+                    new Account(1004, 4000)
                 }
             },
             new Customer
@@ -51,16 +35,8 @@ namespace BankApp.Domain
                 Name = "Maria",
                 Accounts = new List<Account>
                 {
-                    new Account
-                    {
-                        AccountId = 1004,
-                        Balance = 6000
-                    },
-                    new Account
-                    {
-                        AccountId = 1005,
-                        Balance = 20000
-                    }
+                    new Account(1005, 5000),
+                    new Account(1006, 6000)
                 }
             }
         };
