@@ -6,25 +6,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BankApp.App.Models;
 using BankApp.Domain;
+using BankApp.App.Models.ViewModels;
 
 namespace BankApp.App.Controllers
 {
     public class HomeController : Controller
     {
         private readonly BankRepository repo;
+        private HomeViewModel vm;
 
         public HomeController(BankRepository repo)
         {
             this.repo = repo;
+            vm = new HomeViewModel();
         }
         public IActionResult Index()
         {
-            repo.GetAllCustomers();
-            return View();
-            //Gör en lista på startsidan med alla kunder och 
-            //deras konto på startsidan. 
-
-
+            vm.Customers = repo.GetAllCustomers().ToList();
+            return View(vm);
         }
 
         public IActionResult Privacy()
