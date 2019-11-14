@@ -5,14 +5,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BankApp.App.Models;
+using BankApp.Domain;
+using BankApp.App.Models.ViewModels;
 
 namespace BankApp.App.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly BankRepository repo;
+        private HomeViewModel vm;
+
+        public HomeController(BankRepository repo)
+        {
+            this.repo = repo;
+            vm = new HomeViewModel();
+        }
         public IActionResult Index()
         {
-            return View();
+            vm.Customers = repo.GetAllCustomers().ToList();
+            return View(vm);
         }
 
         public IActionResult Privacy()

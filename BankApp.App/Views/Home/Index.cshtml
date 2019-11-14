@@ -1,8 +1,18 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model BankApp.App.Models.ViewModels.HomeViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h4>Bankens kundlista:</h4>
+
+@foreach (var c in Model.Customers)
+{
+    <h6>@c.CustomerId, @c.Name</h6>
+    <h7>Konton:</h7>
+    @foreach (var a in c.Accounts)
+    {
+        <ul>
+            <li>
+               @a.AccountId - Saldo: @a.Balance SEK
+            </li>
+        </ul>
+    }
+
+}
