@@ -41,9 +41,25 @@ namespace BankApp.Domain
             }
         };
 
+        private static List<Account> AllAccounts = new List<Account>
+        {
+            new Account(1001, 1000),
+            new Account(1002, 2000),
+            new Account(1003, 3000),
+            new Account(1004, 4000),
+            new Account(1005, 5000),
+            new Account(1006, 6000)
+        };
+
         public IList<Customer> GetAllCustomers()
         {
             return Customers;
         }
+
+        public IList<Account> GetAllAccounts()
+        {
+            return AllAccounts;
+        }
+
     }
 }

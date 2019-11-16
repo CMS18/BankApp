@@ -24,5 +24,16 @@ namespace BankApp.Domain
 
             Balance = Balance + depositAmount;
         }
+
+        public void Withdraw(decimal withdrawAmount)
+        {
+            //guards
+            if(withdrawAmount > Balance) throw new ArgumentOutOfRangeException(nameof(withdrawAmount),
+                "No coverage for this withdraw");
+            if (withdrawAmount < 0) throw new ArgumentOutOfRangeException(nameof(withdrawAmount),
+                "Withdraw must be positive");
+
+            Balance = Balance - withdrawAmount;
+        }
     }
 }

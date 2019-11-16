@@ -35,14 +35,14 @@ namespace BankApp.Tests
             //Act
             account.Deposit(depositAmount);
             decimal actualBalance = account.Balance;
-
+             
             //Assert
             Assert.AreEqual(expectedBalance, actualBalance);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void CatchNegativeDeposit()
+        public void CannotDepositNegativeAmount()
         {
             //Arrange
             decimal initialBalance = 123.45m;
@@ -55,9 +55,67 @@ namespace BankApp.Tests
             decimal actualBalance = account.Balance;
 
             //Assert
-            Assert.Equals(actualBalance, initialBalance);
+            Assert.AreEqual(actualBalance, initialBalance);
 
             //Expects ArgumentOutOfRangeException
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void CannotWithdrawMoreThanBalance()
+        {
+            //Arrange
+            decimal initialBalance = 123.45m;
+            decimal withdrawAmount = 150m;
+
+            var account = new Account(1, initialBalance);
+
+            //Act
+            account.Withdraw(withdrawAmount);
+            decimal actualBalance = account.Balance;
+
+            //Assert
+            Assert.AreEqual(actualBalance, initialBalance);
+
+            //Expects ArgumentOutOfRangeException
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void CannotWithdrawNegativeAmount()
+        {
+            //Arrange
+            decimal initialBalance = 123.45m;
+            decimal withdrawAmount = -50m;
+
+            var account = new Account(1, initialBalance);
+
+            //Act
+            account.Withdraw(withdrawAmount);
+            decimal actualBalance = account.Balance;
+
+            //Assert
+            Assert.AreEqual(actualBalance, initialBalance);
+
+            //Expects ArgumentOutOfRangeException
+        }
+
+        [TestMethod]
+        public void CanWithdrawAndBalanceIsCorrect()
+        {
+            //Arrange
+            decimal initialBalance = 123.45m;
+            decimal withdrawAmount = 23m;
+            decimal expectedBalance = 100.45m;
+
+            var account = new Account(1, initialBalance);
+
+            //Act
+            account.Withdraw(withdrawAmount);
+            decimal actualBalance = account.Balance;
+
+            //Assert
+            Assert.AreEqual(actualBalance, expectedBalance);
         }
     }
 }
