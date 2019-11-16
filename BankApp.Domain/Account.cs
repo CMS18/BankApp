@@ -9,30 +9,51 @@ namespace BankApp.Domain
         public decimal Balance { get; set; }
         public int AccountId { get; set; }
 
-        public Account(int accountId, decimal balance)
+        public string Message { get; set; }
+
+        public Account(int accountId, decimal balance, string message = null)
         {
             this.AccountId = accountId;
             this.Balance = balance;
+            this.Message = message;
         }
 
         public void Deposit(decimal depositAmount)
         {
             //guard --- för varje guard skriver jag en egen testmetod
             //för att se att "grindvakterna" funkar
-            if (depositAmount < 0) throw new ArgumentOutOfRangeException(nameof(depositAmount),
-                "Deposit must be positive");
+            try
+            {
+                if (depositAmount < 0) throw new ArgumentOutOfRangeException(nameof(depositAmount),
+                                                                       "Deposit can not be negative");
+            }
+            catch (Exception ex)
+            {
+                this.Message = ex.Message;
+                return;
+            }
 
+            this.Message = null;
             Balance = Balance + depositAmount;
         }
 
         public void Withdraw(decimal withdrawAmount)
         {
             //guards
-            if(withdrawAmount > Balance) throw new ArgumentOutOfRangeException(nameof(withdrawAmount),
-                "No coverage for this withdraw");
-            if (withdrawAmount < 0) throw new ArgumentOutOfRangeException(nameof(withdrawAmount),
-                "Withdraw must be positive");
+            try
+            {
+                if (withdrawAmount > Balance) throw new ArgumentOutOfRangeException(nameof(withdrawAmount),
+                     "No coverage for this withdraw");
+                if (withdrawAmount < 0) throw new ArgumentOutOfRangeException(nameof(withdrawAmount),
+                     "Withdraw can not be negative");
+            }
+            catch (Exception ex)
+            {
+                this.Message = ex.Message;
+                return;
+            }
 
+            this.Message = null;
             Balance = Balance - withdrawAmount;
         }
     }

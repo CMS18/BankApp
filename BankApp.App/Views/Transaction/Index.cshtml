@@ -1,7 +1,12 @@
 ﻿@model BankApp.App.Models.ViewModels.TransactionViewModel
 
 <h4>Transaction</h4>
-<div class="text-center"><span>@ViewBag.Message</span></div>
+@{
+    if (ViewBag.Message != null)
+    {
+        <p class="alert-info"> @ViewBag.Message</p>
+    }
+}
 
 <div class="row">
     <div class="col-md-4">

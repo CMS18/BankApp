@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BankApp.Domain
@@ -59,6 +60,14 @@ namespace BankApp.Domain
         public IList<Account> GetAllAccounts()
         {
             return AllAccounts;
+        }
+
+        public Account FindAccount(int id)
+        {
+            Account account = GetAllAccounts()
+                .SingleOrDefault(a => a.AccountId == id);
+            
+            return account;
         }
 
     }
