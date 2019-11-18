@@ -117,5 +117,22 @@ namespace BankApp.Tests
             //Assert
             Assert.AreEqual(actualBalance, expectedBalance);
         }
+
+        [TestMethod]
+        public void TestTransfer()
+        {
+            var fromacct = new Account (1001, 1000);
+            var toacct = new Account (1005, 5000);
+            var amount = 100;
+            var newfromaccBalance = fromacct.Balance - amount;
+            var newtoaccBalance = toacct.Balance + amount;
+
+            var bank = new BankRepository();
+            bank.Transfer(fromacct, toacct, amount);
+
+            Assert.AreEqual(newfromaccBalance, fromacct.Balance);
+            Assert.AreEqual(newtoaccBalance, toacct.Balance);
+        }
+
     }
 }

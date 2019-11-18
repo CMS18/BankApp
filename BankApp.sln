@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankApp.App", "BankApp.App\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankApp.Tests", "BankApp.Tests\BankApp.Tests.csproj", "{DF1A9526-1F0A-43C9-B717-C98D035BAA8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApp.Domain", "BankApp.Domain\BankApp.Domain.csproj", "{BB8DFCE0-C847-48E3-A673-63D832519937}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankApp.Domain", "BankApp.Domain\BankApp.Domain.csproj", "{BB8DFCE0-C847-48E3-A673-63D832519937}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
