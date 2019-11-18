@@ -24,9 +24,9 @@ namespace BankApp.App.Controllers
         {
             var fromaccount = BankRepository.AllAccounts.SingleOrDefault(a => a.AccountId == fromAccount);
             var toaccount = BankRepository.AllAccounts.SingleOrDefault(a => a.AccountId == toAccount);
-            if (fromAccount == toAccount)
+            if (fromAccount == toAccount || fromaccount == null || toaccount == null)
             {
-                TempData["info"] = "It is not possible to transfer to the same account";
+                TempData["info"] = "It is not possible to transfer to the same account or fake account";
             }
             else if (fromaccount != null || toaccount != null)
             {
