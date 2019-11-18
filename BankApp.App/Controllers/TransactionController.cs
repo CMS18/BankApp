@@ -31,19 +31,26 @@ namespace BankApp.App.Controllers
             if (ModelState.IsValid)
             {
                 Account account = repo.FindAccount(vm.AccountId);
-
-                if (account == null)
+                if (account != null)
                 {
-                    ViewBag.Message = "Ogiltigt kontonummer";
-
-                    return View("Index");
+                    try
+                    {
+                        account.Deposit(vm.Amount);
+                    }
+                    catch (ArgumentOutOfRangeException ex)
+                    {
+                        ViewBag.Message = ex.Message;
+                        return View("Index");
+                    }
                 }
-
-                account.Deposit(vm.Amount);
-                if(account.Message != null)
+                else
                 {
-                    ViewBag.Message = account.Message;
-                    return View("Index");
+
+                    if (account == null)
+                    {
+                        ViewBag.Message = "Ogiltigt kontonummer";
+                        return View("Index");
+                    }
                 }
 
                 vm.NewBalance = account.Balance;
@@ -65,19 +72,17 @@ namespace BankApp.App.Controllers
             {
                 Account account = repo.FindAccount(vm.AccountId);
 
-                if (account == null)
+                if (account != null)
                 {
-                    ViewBag.Message = "Ogiltigt kontonummer";
-
-                    return View("Index");
-                }
-
-                account.Withdraw(vm.Amount);
-
-                if (account.Message != null)
-                {
-                    ViewBag.Message = account.Message;
-                    return View("Index");
+                    try
+                    {
+                        account.Withdraw(vm.Amount);
+                    }
+                    catch (ArgumentOutOfRangeException ex)
+                    {
+                        ViewBag.Message = ex.Message;
+                        return View("Index");
+                    }
                 }
 
                 vm.NewBalance = account.Balance;
@@ -90,10 +95,8 @@ namespace BankApp.App.Controllers
                 return View("Index");
             }
         }
-
-    
-
-}
+                
+    }
 
 
 }

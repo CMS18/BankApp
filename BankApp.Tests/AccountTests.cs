@@ -121,8 +121,8 @@ namespace BankApp.Tests
         [TestMethod]
         public void TestTransfer()
         {
-            var fromacct = new Account (1000, 1001);
-            var toacct = new Account (5000, 1005);
+            var fromacct = new Account (1001, 1000);
+            var toacct = new Account (1005, 5000);
             var amount = 100;
             var newfromaccBalance = fromacct.Balance - amount;
             var newtoaccBalance = toacct.Balance + amount;
