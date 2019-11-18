@@ -33,7 +33,8 @@ namespace BankApp.App.Controllers
                 try
                 {
                     repo.Transfer(fromaccount, toaccount, amount);
-                    TempData["info"] = $"Successfully transfered from account {fromaccount.AccountId} (new balance: {fromaccount.Balance})" + $"to account {toaccount.AccountId} (new balance {toaccount.Balance})";
+                    TempData["info"] = $"Successfully transfered from account {fromaccount.AccountId} (new balance: {fromaccount.Balance})" + 
+                        $"to account {toaccount.AccountId} (new balance {toaccount.Balance})";
                 }
                 catch (ArgumentOutOfRangeException)
                 {
