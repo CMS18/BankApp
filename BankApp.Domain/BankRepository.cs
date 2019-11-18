@@ -6,7 +6,7 @@ using System.Text;
 namespace BankApp.Domain
 {
     public class BankRepository
-    {
+    {        
         private static List<Customer> Customers = new List<Customer>
         {
             new Customer
@@ -42,7 +42,7 @@ namespace BankApp.Domain
             }
         };
 
-        private static List<Account> AllAccounts = new List<Account>
+        public static List<Account> AllAccounts = new List<Account>
         {
             new Account(1001, 1000),
             new Account(1002, 2000),
@@ -68,6 +68,19 @@ namespace BankApp.Domain
                 .SingleOrDefault(a => a.AccountId == id);
             
             return account;
+        }
+
+        public void Transfer(Account from, Account to, decimal amount)
+        {
+            if(amount > 0 && from.Balance >= amount && int.TryParse(amount.ToString(), out int i))
+            {
+                from.Balance -= amount;
+                to.Balance += amount;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException();
+            }
         }
 
     }

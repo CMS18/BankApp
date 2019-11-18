@@ -9,5 +9,6 @@ namespace BankApp.App.Models.ViewModels
     public class HomeViewModel
     {
         public List<Customer> Customers { get; set; }
+        
     }
 }

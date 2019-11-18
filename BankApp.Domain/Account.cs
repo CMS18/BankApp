@@ -11,11 +11,10 @@ namespace BankApp.Domain
 
         public string Message { get; set; }
 
-        public Account(int accountId, decimal balance, string message = null)
+        public Account(int accountId, decimal balance)
         {
             this.AccountId = accountId;
-            this.Balance = balance;
-            this.Message = message;
+            this.Balance = balance;           
         }
 
         public void Deposit(decimal depositAmount)

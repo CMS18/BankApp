@@ -1,0 +1,13 @@
+﻿<form asp-controller="Transfer" asp-action="Transfer" method="post">
+    <label>From account:</label>
+    <Input name="fromAccount" /><br />
+    <label>To account:</label>
+    <Input name="toAccount" /><br />
+    <label>Amount:</label>
+    <Input name="amount" /><br />
+
+    <input type="submit" value="Transfer" />
+
+</form>
+
+@TempData["info"]
